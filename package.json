@@ -1,0 +1,31 @@
+{
+  "name": "frank",
+  "version": "0.1.0",
+  "description": "",
+  "main": "./lib/index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@bitbucket.org:kim3er/frank.git"
+  },
+  "author": "Richard Kimber",
+  "license": "ISC",
+  "devDependencies": {
+    "babelify": "^6.0.2",
+    "browserify": "^9.0.8",
+    "del": "^1.1.1",
+    "gulp": "^3.8.11",
+    "gulp-babel": "^5.1.0",
+    "gulp-concat": "^2.5.2",
+    "gulp-connect": "^2.2.0",
+    "gulp-plumber": "^1.0.0",
+    "gulp-sourcemaps": "^1.5.1",
+    "gulp-uglify": "^1.2.0",
+    "gulp-watch": "^4.2.4",
+    "main-bower-files": "^2.6.2",
+    "run-sequence": "^1.0.2",
+    "vinyl-source-stream": "^1.1.0"
+  }
+}
