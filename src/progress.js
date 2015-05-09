@@ -1,4 +1,4 @@
-import { Event } from './event';
+import { PubSub } from './pub_sub';
 
 export class Progress {
 
@@ -10,7 +10,7 @@ export class Progress {
 	constructor() {
 		let self = this;
 
-		self.event = new Event();
+		self.event = new PubSub();
 
 		self._total = 0;
 		self._downloaded = 0;
@@ -72,13 +72,13 @@ export class Progress {
 	}
 
 	on(eventName, listener) {
-		events.subscribe(`${this._key}${eventName}`, listener);
+		this.event.subscribe(`${this._key}${eventName}`, listener);
 
 		return this;
 	}
 
 	trigger(eventName) {
-		events.publish(`${this._key}${eventName}`, { total: this._total, downloaded: this._downloaded, percentage: this.percentage() });
+		this.event.publish(`${this._key}${eventName}`, { total: this._total, downloaded: this._downloaded, percentage: this.percentage() });
 
 		return this;
 	}

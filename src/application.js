@@ -1,5 +1,5 @@
-import { Event } from './event';
 import { Progress } from './progress';
+import { PubSub } from './pub_sub';
 import { Router } from './router';
 
 export class Application {
@@ -20,7 +20,7 @@ export class Application {
 
 		self.progress = new Progress();
 		self.router = new Router({ app: self, controllers: self.controllers() });
-		self.event = new Event();
+		self.event = new PubSub();
 
 		self.state = {};
 

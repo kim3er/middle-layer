@@ -1,6 +1,6 @@
 {
-  "name": "frank",
-  "version": "0.1.0",
+  "name": "middle-layer",
+  "version": "0.2.0",
   "description": "",
   "main": "./lib/index.js",
   "scripts": {
@@ -8,7 +8,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git@bitbucket.org:kim3er/frank.git"
+    "url": "git@bitbucket.org:kim3er/middle-layer.git"
   },
   "author": "Richard Kimber",
   "license": "ISC",

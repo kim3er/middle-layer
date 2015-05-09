@@ -1,6 +1,6 @@
 {
-  "name": "frank",
-  "version": "0.1.0",
+  "name": "middle-layer",
+  "version": "0.2.0",
   "main": [
     "./lib/index.js"
   ],
