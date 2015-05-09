@@ -41,25 +41,36 @@ export class Router {
 			self.controllers = controllers;
 		}
 
-		self.controllers.forEach(function(controllerClass) {
+		for (let controllerClass of self.controllers) {
 			let controller = new controllerClass(self.app);
-			controller.actions().forEach(function(action) {
-				self.routes.$[action] = { controller: controller, action: action };
+
+			for (let route of controller.actions()) {
+				var action, match;
+
+				if (typeof route === 'string') {
+					action = match = route;
+				}
+				else {
+					action = route.action;
+					match = route.match;
+				}
+
+				self.routes.$[match] = { controller: controller, action: action };
 
 				if (!self.routes[controllerClass.name]) {
 					self.routes[controllerClass.name] = {};
 				}
 
-				self.routes[controllerClass.name][action] = { controller: controller, action: action };
-			});
-		})
+				self.routes[controllerClass.name][match] = { controller: controller, action: action };
+			}
+		}
 	}
 
 	attachHandlers() {
 		var self = this;
 
 		$('body')
-			.on('click', 'a[href^="#"]', function(evt) {
+			.on('click', 'a[href^="#"]:not([data-router-ignore])', function(evt) {
 				evt.preventDefault();
 
 				var $self = $(this),
@@ -69,7 +80,21 @@ export class Router {
 					return false;
 				}
 
+				if($self.hasClass('is-active')) {
+					return false;
+				}
+
+				if(!$self.hasClass('js-menu__trigger') && typeof(ui.events.closeMenu) != 'undefined') {
+					ui.events.closeMenu();
+				}
+
+				// Update button bar active status - run it here so if there is a controller action, it can override
+				if(typeof(ui.events.updateButtonBar) != 'undefined') {
+					ui.events.updateButtonBar(href);
+				}
+
 				var action = self.routes.$[href];
+
 				if (action !== undefined) {
 					self.controllerAction(action, $self.data(), $self);
 				}
@@ -78,7 +103,7 @@ export class Router {
 				}
 
 			})
-			.on('submit', 'form[action^="#"]', function(evt) {
+			.on('submit', 'form[action^="#"]:not([data-router-ignore])', function(evt) {
 				evt.preventDefault();
 
 				var $self = $(this),

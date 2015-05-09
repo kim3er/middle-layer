@@ -2,7 +2,7 @@ export class Proxy {
 
 	headers() {
 		return {
-			
+
 		};
 	}
 

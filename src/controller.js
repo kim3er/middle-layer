@@ -1,5 +1,5 @@
 export class Controller {
-	
+
 	actions() {
 		return [];
 	}

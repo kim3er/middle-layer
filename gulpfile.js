@@ -1,4 +1,4 @@
-var gulp = require('gulp')
+var gulp = require('gulp'),
 	connect = require('gulp-connect'),
 	sourcemaps = require('gulp-sourcemaps'),
 	concat = require('gulp-concat'),

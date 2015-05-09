@@ -1,3 +1,5 @@
+import { Event } from './event';
+
 export class Progress {
 
 	_reset() {
@@ -6,10 +8,14 @@ export class Progress {
 	}
 
 	constructor() {
-		this._total = 0;
-		this._downloaded = 0;
-		this._idx = Math.random().toString(36).substr(2, 5);
-		this._key = `${this._idx}_progress_`;
+		let self = this;
+
+		self.event = new Event();
+
+		self._total = 0;
+		self._downloaded = 0;
+		self._idx = Math.random().toString(36).substr(2, 5);
+		self._key = `${self._idx}_progress_`;
 	}
 
 	percentage() {

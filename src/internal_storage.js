@@ -231,7 +231,7 @@ export class InternalStorage {
 	// Public
 	has(id) {
 		return this._hasKey(id);
-	} 
+	}
 
 	get(id=null) {
 		if (id == null) {
@@ -244,7 +244,7 @@ export class InternalStorage {
 
 	first() {
 		var self = this;
-		
+
 		return new Promise(function(resolve, reject) {
 			self._getAll()
 				.then(function(collection) {

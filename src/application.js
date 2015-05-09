@@ -1,3 +1,4 @@
+import { Event } from './event';
 import { Progress } from './progress';
 import { Router } from './router';
 
@@ -13,12 +14,15 @@ export class Application {
 
 
 	constructor(onDevice: boolean) {
-		var self = this;
+		let self = this;
 
 		self.onDevice = onDevice;
 
 		self.progress = new Progress();
 		self.router = new Router({ app: self, controllers: self.controllers() });
+		self.event = new Event();
+
+		self.state = {};
 
 		self.ready()
 			.then(() => self.afterReady());

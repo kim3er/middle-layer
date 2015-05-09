@@ -22,7 +22,7 @@ export class Flash {
 
 	static alert(message, callback) {
 		var type = 'alert';
-		
+
 		this.message(message, type, callback);
 	}
 
