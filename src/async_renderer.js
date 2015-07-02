@@ -1,6 +1,6 @@
-import { Renderer } from './renderer';
+import { MlRenderer } from './renderer';
 
-export class AsyncRenderer extends Renderer {
+export class MlAsyncRenderer extends MlRenderer {
 
 	constructor(env) {
 		super(env);
@@ -38,7 +38,7 @@ export class AsyncRenderer extends Renderer {
 				function(instruction, callback) {
 					instruction.promise
 						.then(function(data) {
-							return self.renderHtml(instruction.template, data);
+							return self.render(instruction.template, data);
 						})
 						.then(function(html) {
 							$target

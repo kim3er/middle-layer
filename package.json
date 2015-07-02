@@ -1,6 +1,6 @@
 {
   "name": "middle-layer",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "description": "",
   "main": "./lib/index.js",
   "scripts": {
@@ -13,8 +13,8 @@
   "author": "Richard Kimber",
   "license": "ISC",
   "devDependencies": {
-    "babelify": "^6.0.2",
-    "browserify": "^9.0.8",
+    "babelify": "^6.1.2",
+    "browserify": "^10.2.4",
     "del": "^1.1.1",
     "gulp": "^3.8.11",
     "gulp-babel": "^5.1.0",

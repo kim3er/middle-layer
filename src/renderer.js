@@ -1,16 +1,10 @@
-export class Renderer {
+export class MlRenderer {
 
-	constructor(env) {
-		let self = this;
+	constructor() {
 
-		self.env = env;
 	}
 
-	renderHtml(template, data = {}) {
-		let self = this;
+	async render(template, data = {}) {
 
-		return new Promise(function(resolve, reject) {
-			resolve(self.env.render(`${template}.html`, data));
-		});
 	}
 }

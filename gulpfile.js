@@ -48,7 +48,10 @@ gulp.task('libs', function() {
 gulp.task('build', [ 'del-build' ], function() {
 	return gulp.src([ SRC_PATH + '/**/*.js' ])
 				.pipe(plumber())
-				.pipe(babel({ blacklist: [ 'useStrict' ] }))
+				.pipe(babel({
+					blacklist: [ 'useStrict' ],
+					optional: [ 'es7.decorators', 'es7.asyncFunctions' ]
+				}))
 				.pipe(gulp.dest(BUILD_PATH));
 });
 
@@ -57,7 +60,10 @@ gulp.task('app', [ 'build' ], function() {
 					entries: TEST_PATH + '/app.js',
 					debug: true
 				})
-				.transform(babelify)
+				.transform(babelify.configure({
+					blacklist: [ 'useStrict' ],
+					optional: [ 'es7.decorators', 'es7.asyncFunctions' ]
+				}))
 				.bundle()
 				.pipe(source('app.js'))
 				.pipe(gulp.dest(WEB_PATH));

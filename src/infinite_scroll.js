@@ -1,7 +1,7 @@
 /**
  * Class for enabling infinite scroll on an element.
  */
-export class InfiniteScroll {
+export class MlInfiniteScroll {
 
 	/**
 	 * Initialise with an options object.

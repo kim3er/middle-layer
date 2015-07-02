@@ -1,6 +1,6 @@
-import { PubSub } from './pub_sub';
+import { MlPubSub } from './pub_sub';
 
-export class Progress {
+export class MlProgress {
 
 	_reset() {
 		this._total = 0;
@@ -10,7 +10,7 @@ export class Progress {
 	constructor() {
 		let self = this;
 
-		self.event = new PubSub();
+		self.event = new MlPubSub();
 
 		self._total = 0;
 		self._downloaded = 0;

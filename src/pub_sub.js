@@ -1,4 +1,4 @@
-export class PubSub {
+export class MlPubSub {
 
 	constructor() {
 		this.topics = {};

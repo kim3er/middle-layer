@@ -1,6 +1,6 @@
-import { InternalStorage } from './internal_storage';
+import { MlInternalStorage } from './internal_storage';
 
-export class Store {
+export class MlStore {
 
 	constructor(key = 'store') {
 		this._storage = new InternalStorage(key);

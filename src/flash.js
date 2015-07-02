@@ -1,4 +1,4 @@
-export class Flash {
+export class MlFlash {
 
 	static message(message, type, callback) {
 		console.log(`[${type}] ${message}`);

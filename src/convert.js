@@ -1,4 +1,4 @@
-export class Convert {
+export class MlConvert {
 
 	static objectToArray(obj) {
 		var arr = new Array();

@@ -1,6 +1,6 @@
-import { Config } from './config';
+import { MlConfig } from './config';
 
-export class Service extends Config {
+export class MlService extends MlConfig {
 
 	config() {
 		return {

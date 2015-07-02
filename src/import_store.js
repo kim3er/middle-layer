@@ -1,7 +1,7 @@
-import { InternalStorage } from './internal_storage';
+import { MlInternalStorage } from './internal_storage';
 
 
-export class ImportStore extends InternalStorage {
+export class MlImportStore extends MlInternalStorage {
 
 	// Config
 	config(key, fileRefs=[]) {

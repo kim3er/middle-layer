@@ -1,31 +1,35 @@
-import { Progress } from './progress';
-import { PubSub } from './pub_sub';
-import { Router } from './router';
+import { MlConfig } from './config';
+import { MlProgress } from './progress';
+import { MlPubSub } from './pub_sub';
 
-export class Application {
+export class MlApplication extends MlConfig {
 
 	// Config
 
-	controllers() {
-		return [
-		// Declare controllers here
-		];
+	config() {
+		return {
+			controllers: [],
+			classes: {
+				router: null,
+				renderer: null
+			}
+		};
 	}
 
 
 	constructor(onDevice: boolean) {
+		super();
+
 		let self = this;
 
 		self.onDevice = onDevice;
 
-		self.progress = new Progress();
-		self.router = new Router({ app: self, controllers: self.controllers() });
-		self.event = new PubSub();
+		self.progress = new MlProgress();
+		self.renderer = new self.classes.renderer();
+		self.router = new self.classes.router({ app: self, controllers: self.controllers });
+		self.event = new MlPubSub();
 
 		self.state = {};
-
-		self.ready()
-			.then(() => self.afterReady());
 	}
 
 
@@ -45,10 +49,6 @@ export class Application {
 		}
 	}
 
-	switchTemplate(name, data) {
-
-	}
-
 
 	// Helpers
 
@@ -56,7 +56,11 @@ export class Application {
 		let self = this;
 
 		function appReady(onDevice) {
-			return () => { window.app = new self(onDevice); }
+			return function() {
+				window.app = new self(onDevice);
+				app.ready()
+					.then(() => app.afterReady());
+			}
 		}
 
 		if (typeof cordova !== 'undefined') {

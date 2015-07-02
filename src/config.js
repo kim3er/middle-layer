@@ -1,4 +1,4 @@
-export class Config {
+export class MlConfig {
 
 	config() {
 		return {

@@ -1,4 +1,4 @@
-export class Router {
+export class MlRouter {
 
 	constructor(opts) {
 		let defaults = {
@@ -26,7 +26,7 @@ export class Router {
 			return this.controllerAction(action, data);
 		}
 		else {
-			return this.app.switchTemplate(actionName);
+			return this.switchTemplate(actionName);
 		}
 	}
 
@@ -34,17 +34,17 @@ export class Router {
 		return obj.controller[obj.action].apply(obj.controller, args);
 	}
 
-	attachControllers(controllers = null) {
-		var self = this;
+	switchTemplate(href, data) {
+		return this.app.renderer.render(href, data);
+	}
 
-		if (controllers) {
-			self.controllers = controllers;
-		}
+	attachControllers() {
+		let self = this;
 
 		for (let controllerClass of self.controllers) {
 			let controller = new controllerClass(self.app);
 
-			for (let route of controller.actions()) {
+			for (let route of controller.routes) {
 				var action, match;
 
 				if (typeof route === 'string') {
@@ -66,60 +66,12 @@ export class Router {
 		}
 	}
 
+	/**
+	 * Override this function to attach handlers
+	 * @return {undefined} Nothing returned
+	 */
 	attachHandlers() {
-		var self = this;
 
-		$('body')
-			.on('click', 'a[href^="#"]:not([data-router-ignore])', function(evt) {
-				evt.preventDefault();
-
-				var $self = $(this),
-					href = $self.attr('href').replace('#', '');
-
-				if (href === '') {
-					return false;
-				}
-
-				if($self.hasClass('is-active')) {
-					return false;
-				}
-
-				if(!$self.hasClass('js-menu__trigger') && typeof(ui.events.closeMenu) != 'undefined') {
-					ui.events.closeMenu();
-				}
-
-				// Update button bar active status - run it here so if there is a controller action, it can override
-				if(typeof(ui.events.updateButtonBar) != 'undefined') {
-					ui.events.updateButtonBar(href);
-				}
-
-				var action = self.routes.$[href];
-
-				if (action !== undefined) {
-					self.controllerAction(action, $self.data(), $self);
-				}
-				else {
-					self.app.switchTemplate(href);
-				}
-
-			})
-			.on('submit', 'form[action^="#"]:not([data-router-ignore])', function(evt) {
-				evt.preventDefault();
-
-				var $self = $(this),
-					href = $self.attr('action').replace('#', '');
-
-				if (href === '') {
-					return false;
-				}
-
-				var action = self.routes.$[href];
-				if (action !== undefined) {
-					var o = $self.serializeObject();
-
-					self.controllerAction(action, o, $self.data(), $self);
-				}
-			});
 	}
 
 }

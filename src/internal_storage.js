@@ -1,4 +1,4 @@
-export class InternalStorage {
+export class MlInternalStorage {
 
 	// Config
 	config(key) {

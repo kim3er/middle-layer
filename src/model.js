@@ -1,6 +1,6 @@
-import { Config } from './config';
+import { MlConfig } from './config';
 
-export class Model extends Config {
+export class MlModel extends MlConfig {
 
 	convertResource(obj) {
 		let self = this;

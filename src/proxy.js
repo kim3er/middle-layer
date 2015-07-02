@@ -1,4 +1,4 @@
-export class Proxy {
+export class MlProxy {
 
 	headers() {
 		return {
