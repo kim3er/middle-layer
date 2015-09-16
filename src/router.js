@@ -19,16 +19,40 @@ export class MlRouter {
 		this.attachHandlers();
 	}
 
-	goTo(actionName, data) {
-		let action = this.routes.$[actionName];
+
+	/**
+	 * External Routing Methods
+	 */
+
+	goTo(route, data) {
+		let self = this,
+			action = self.routes.$[route];
 
 		if (action) {
 			return this.controllerAction(action, data);
 		}
 		else {
-			return this.switchTemplate(actionName);
+			return this.switchTemplate(route);
 		}
 	}
+
+	formSubmit(route, $form) {
+		let action = this.routes.$[route];
+		if (action !== undefined) {
+			let fields = $form.serializeObject();
+
+			return this.controllerAction(action, fields, $form.data(), $form);
+		}
+		else {
+			console.log('Route doesn\'t exist');
+			return Promise.reject();
+		}
+	}
+
+
+	/**
+	 * Internal Routing Methods (Do not use outside router)
+	 */
 
 	controllerAction(obj, ...args) {
 		return obj.controller[obj.action].apply(obj.controller, args);
