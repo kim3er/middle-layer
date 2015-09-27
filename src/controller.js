@@ -32,10 +32,6 @@ export function route(route) {
 
 export class MlController {
 
-	actions() {
-		return [];
-	}
-
 	constructor(app = {}) {
 		this.app = app;
 	}
