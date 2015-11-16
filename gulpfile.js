@@ -19,6 +19,16 @@ var SRC_PATH = './src',
 	WEB_PATH = './.web',
 	POLYFILLS_PATH = './polyfills';
 
+var BABELIFY_CONFIG = {
+	blacklist: [ 'useStrict' ],
+	optional: [
+		'es7.decorators', // For routing
+		'es7.asyncFunctions', // For everything, async is awesome
+		'spec.protoToAssign', // Legacy IE support
+		'minification.removeConsole' // Quick fix for messy code
+	]
+};
+
 gulp.task('del-build', function(cb) {
 	del([ BUILD_PATH + '/*' ], function() {
 		cb();
@@ -48,10 +58,7 @@ gulp.task('libs', function() {
 gulp.task('build', [ 'del-build' ], function() {
 	return gulp.src([ SRC_PATH + '/**/*.js' ])
 				.pipe(plumber())
-				.pipe(babel({
-					blacklist: [ 'useStrict' ],
-					optional: [ 'es7.decorators', 'es7.asyncFunctions', 'spec.protoToAssign', 'minification.removeConsole' ]
-				}))
+				.pipe(babel(BABELIFY_CONFIG))
 				.pipe(gulp.dest(BUILD_PATH));
 });
 
@@ -60,10 +67,7 @@ gulp.task('app', [ 'build' ], function() {
 					entries: TEST_PATH + '/app.js',
 					debug: true
 				})
-				.transform(babelify.configure({
-					blacklist: [ 'useStrict' ],
-					optional: [ 'es7.decorators', 'es7.asyncFunctions', 'spec.protoToAssign', 'minification.removeConsole' ]
-				}))
+				.transform(babelify.configure(BABELIFY_CONFIG))
 				.bundle()
 				.pipe(source('app.js'))
 				.pipe(gulp.dest(WEB_PATH));
