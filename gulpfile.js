@@ -50,7 +50,7 @@ gulp.task('build', [ 'del-build' ], function() {
 				.pipe(plumber())
 				.pipe(babel({
 					blacklist: [ 'useStrict' ],
-					optional: [ 'es7.decorators', 'es7.asyncFunctions' ]
+					optional: [ 'es7.decorators', 'es7.asyncFunctions', 'spec.protoToAssign', 'minification.removeConsole' ]
 				}))
 				.pipe(gulp.dest(BUILD_PATH));
 });
@@ -62,7 +62,7 @@ gulp.task('app', [ 'build' ], function() {
 				})
 				.transform(babelify.configure({
 					blacklist: [ 'useStrict' ],
-					optional: [ 'es7.decorators', 'es7.asyncFunctions' ]
+					optional: [ 'es7.decorators', 'es7.asyncFunctions', 'spec.protoToAssign', 'minification.removeConsole' ]
 				}))
 				.bundle()
 				.pipe(source('app.js'))
