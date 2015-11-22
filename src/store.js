@@ -3,7 +3,7 @@ import { MlInternalStorage } from './internal_storage';
 export class MlStore {
 
 	constructor(key = 'store') {
-		this._storage = new InternalStorage(key);
+		this._storage = new MlInternalStorage(key);
 	}
 
 	clear() {
