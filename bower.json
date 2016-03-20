@@ -1,0 +1,23 @@
+{
+  "name": "middle-layer",
+  "version": "0.2.0",
+  "main": [
+    "./lib/index.js"
+  ],
+  "authors": [
+    "Richard Kimber <rich@k3r.me>"
+  ],
+  "license": "MIT",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "localforage": "~1.2.2",
+    "jquery": "~2.1.3"
+  }
+}
