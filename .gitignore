@@ -1,5 +1,4 @@
-.web
-
-node_modules
-
-bower_components
+.web/
+bower_components/
+node_modules/
+lib/
