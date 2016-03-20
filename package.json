@@ -1,14 +1,16 @@
 {
   "name": "middle-layer",
-  "version": "0.3.0",
+  "version": "1.0.0",
   "description": "",
   "main": "./lib/index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "compile": "gulp",
+    "prepublish": "npm run compile"
   },
   "repository": {
     "type": "git",
-    "url": "git@bitbucket.org:kim3er/middle-layer.git"
+    "url": "git@github.com:kim3er/middle-layer.git"
   },
   "author": "Richard Kimber",
   "license": "ISC",
